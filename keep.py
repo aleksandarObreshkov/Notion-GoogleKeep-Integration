@@ -21,7 +21,6 @@ def get_quick_capture_content():
     note_content = quick_add_note.text
     if note_content != "":
         print(f"Note content: {note_content}")
-        clear_note_content()
         keep.sync(True)
         return note_content
     print("Quick capture note is empty")

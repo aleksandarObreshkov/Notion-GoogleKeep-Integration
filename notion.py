@@ -1,3 +1,4 @@
+import json
 import requests
 from string import Template
 import os
@@ -34,7 +35,7 @@ def write_array_to_quick_capture_page(array_from_note:list[str]):
   for note_line in array_from_note:
     res = write_content_to_quick_capture_page(note_line)
     if res.status_code != 200:
-      raise RuntimeError(f"Error ocurred.")#extract error message from response: {"object":"error","status":400,"code":"invalid_request_url","message":"Invalid request URL."}
+      raise RuntimeError(f"Error: {json.loads(res.content)['message']}")
 
 def write_content_to_quick_capture_page(text_from_note):
     data = content.substitute(note = text_from_note)

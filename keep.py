@@ -7,7 +7,7 @@ def login(email:str, password:str):
     keep.sync(True)
     
 
-def get_quick_capture_content():    
+def get_quick_capture_content()-> list[str]:    
     keep.sync(True)
     notes = keep.all()
     quick_add_id = 0
@@ -18,13 +18,11 @@ def get_quick_capture_content():
             break
 
     quick_add_note = keep.get(quick_add_id)
-    note_content = quick_add_note.text
+    note_content:str = quick_add_note.text
     if note_content != "":
-        print(f"Note content: {note_content}")
-        keep.sync(True)
-        return note_content
+        return note_content.splitlines()
     print("Quick capture note is empty")
-    return None
+    return []
 
 def clear_note_content():
     notes = keep.all()

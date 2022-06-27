@@ -1,0 +1,12 @@
+---
+applications:
+  - name: Keep-Notion-Integration
+    memory: 128MB
+    disk_quota: 512M
+    instances: 1 
+    buildpacks:
+      - python_buildpack
+    command: python main.py
+
+    env:
+      NOTION_SECRET: secret_FADwwcfBEYNrcTjdavUeQVPo84YCJ3nCqXcDOxu2ll4 #use environment

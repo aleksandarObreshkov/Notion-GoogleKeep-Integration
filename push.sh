@@ -1,0 +1,1 @@
+cf push -c "python -m pip install gkeepapi; python main.py"

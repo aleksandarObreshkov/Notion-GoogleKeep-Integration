@@ -1,25 +1,25 @@
-from time import sleep
 import notion
 import keep
+from flask import Flask
+import os
 
-def main():
+server = Flask(__name__)
 
-    email = input("Email: ")   
-    password = input("Password: ")
+@server.route("/sync")
+def sync():
+
+    email = os.getenv("PERSONAL_EMAIL")
+    password = os.getenv("PERSONAL_PASSWORD")
     keep.login(email, password)
 
-    while(True):
-        print("Reading QuickNote content")
-        quick_capture_note = keep.get_quick_capture_content()
-        if quick_capture_note != []:
-            print("Writing to Notion page")
-            try:
-                notion.write_array_to_quick_capture_page(quick_capture_note)
-                print("Clearing QuickNote content")
-                keep.clear_note_content()
-            except RuntimeError as re:
-                print(f"Error in writing to Notion. Message: {re.args[0]}")
-        sleep(10)
+    print("Reading QuickNote content")
+    quick_capture_note = keep.get_quick_capture_content()
 
-if __name__ == "__main__":
-    main()
+    if quick_capture_note != []:
+        print("Writing to Notion page")
+        try:
+            notion.write_array_to_quick_capture_page(quick_capture_note)
+            print("Clearing QuickNote content")
+            keep.clear_note_content()
+        except RuntimeError as re:
+            print(f"Error in writing to Notion. Message: {re.args[0]}")

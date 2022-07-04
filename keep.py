@@ -4,10 +4,9 @@ keep = gkeepapi.Keep()
 
 def login(email:str, password:str):
     keep.login(email.rstrip(), password.rstrip())
-    keep.sync(True)
     
 
-def get_quick_capture_content()-> list[str]:    
+def get_quick_capture_content() -> list[str]:    
     keep.sync(True)
     notes = keep.all()
     quick_add_id = -1
@@ -17,7 +16,7 @@ def get_quick_capture_content()-> list[str]:
             quick_add_id = note.id
             break
 
-    if quick_add_id==-1:
+    if quick_add_id == -1:
         raise RuntimeError('QuickAdd note does not exist')
 
     quick_add_note = keep.get(quick_add_id)

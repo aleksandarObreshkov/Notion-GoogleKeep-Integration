@@ -10,3 +10,6 @@ applications:
 
     env:
       NOTION_SECRET: secret_FADwwcfBEYNrcTjdavUeQVPo84YCJ3nCqXcDOxu2ll4 #use environment
+      FLASK_APP: main
+      PERSONAL_EMAIL: aleks.yasuo@gmail.com
+      PERSONAL_PASSWORD: Inolongerwishtoadult0092
